@@ -10,14 +10,16 @@
   "author": "Acuna - Panetta",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "chalk": "^4.0.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jwt-simple": "^0.5.6",
+    "moment": "^2.26.0",
     "mongo": "^0.1.0",
     "mongodb": "^3.5.7",
-    "mongoose": "^5.9.15"
-  },
-  "devDependencies": {
+    "mongoose": "^5.9.15",
     "nodemon": "^2.0.4"
   }
 }
