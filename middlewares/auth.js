@@ -7,18 +7,22 @@ const services = require('../services');
 // De lo contrario, la solicitud quedará colgada.
 function isAuth(req, res, next) {
     // solicitamos authorization dentro de los headers del mensaje
+    console.log("Verificando header authorization");
     if (!req.headers.authorization) {
-        return res.status(403).send({ message: 'No tienes autorizacion'});
+        return res.status(403).send({ message: 'No tienes autorizacion' });
     }
-    // para obtener el token busco la segunda posición del array 
-    const token = req.headers.authorization.split(" ")[1];
+    // obtenemos el token del header 
+    console.log("Verificando authorization token");
+    const token = req.headers.authorization;
     services.decodeToken(token)
         .then(response => {
             req.user = response;
+            console.log("Authorization token OK");
             next();
         })
         .catch(response => {
-            res.status(response.status);
+            console.log("Authorization decodeToken error");
+            res.status(response.status).send({ message: response.message });
         });
 }
 

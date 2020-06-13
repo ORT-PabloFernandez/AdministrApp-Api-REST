@@ -15,17 +15,17 @@ function createToken(user) {
         // fecha de expiracion del token
         exp: moment().add(14, 'days').unix()
     }
-
+    console.log("Encoding token...");
     return jwt.encode(payload, config.SECRET_TOKEN);
 }
 
 function decodeToken(token) {
     const decoded = new Promise((resolve, reject) => {
         try {
-
+            console.log("Intentando decodificar token...");
             // intento decodificar el token
             const payload = jwt.decode(token, config.SECRET_TOKEN);
-
+            console.log("Verificando caducidad del token...");
             // si el token caduco
             if (payload.exp <= moment().unix()) {
                 reject({
@@ -33,9 +33,9 @@ function decodeToken(token) {
                     message: 'El token ha expirado'
                 });              
             }
+            console.log("Token correcto!");
             // si el token es correcto, devuelvo el token decodificado
             resolve(payload.sub);
-
         } catch (err) {
             reject({
                 status: 500,
@@ -43,7 +43,6 @@ function decodeToken(token) {
             });
         }
     });
-
     return decoded;
 }
 

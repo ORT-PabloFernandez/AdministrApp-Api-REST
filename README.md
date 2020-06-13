@@ -35,7 +35,7 @@ Method POST: Login usuario
 Ejemplo de curl para login:
 
 curl --location --request POST 'http://localhost:3001/api/login' \
---header 'authorization: Bearer tokenGenerado' \
+--header 'authorization: tokenGenerado' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "email": "email@prueba.com"
