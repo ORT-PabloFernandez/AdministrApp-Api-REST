@@ -2,7 +2,7 @@
 
 const jwt = require('jwt-simple');
 const moment = require('moment');
-const config = require('../config');
+const config = require('../config/config');
 
 function createToken(user) {
     // los datos que viajan entre cliente y servidor (solo info basica)
