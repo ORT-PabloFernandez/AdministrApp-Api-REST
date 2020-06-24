@@ -10,7 +10,7 @@ const validarPostMensaje = require('../middlewares/mensajePostValidator');
 const validarPutMensaje = require('../middlewares/mensajePutValidator');
 
 api.post('/signup', validarSignUp, usuarioController.signUp);
-api.post('/login', auth, usuarioController.signIn);
+api.post('/login', usuarioController.signIn);
 api.get('/mensaje', auth, mensajeController.getMensajes);
 api.get('/mensaje/:mensajeId', auth, mensajeController.getMensaje);
 api.post('/mensaje', auth, validarPostMensaje, mensajeController.saveMensaje);
