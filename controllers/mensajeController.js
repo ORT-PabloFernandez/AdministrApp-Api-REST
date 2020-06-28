@@ -57,6 +57,7 @@ function deleteMensaje(req, res) {
     console.log("deleteMensaje Id: " + mensajeId);
     Mensaje.findById(mensajeId, (err, mensaje) => {
         if (err) return res.status(500).send({message: `Error al borrar el mensaje: ${err}`});
+        if (!mensaje) return res.status(404).send({message: `No existe el mensaje`});
         mensaje.remove(err => {
             if (err) return res.status(500).send({message: `Error al borrar el mensaje: ${err}`});
             console.log("mensaje remove OK");
