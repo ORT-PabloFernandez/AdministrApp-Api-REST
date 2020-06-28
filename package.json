@@ -19,7 +19,6 @@
     "moment": "^2.26.0",
     "mongo": "^0.1.0",
     "mongodb": "^3.5.7",
-    "mongoose": "^5.9.15",
-    "nodemon": "^2.0.4"
+    "mongoose": "^5.9.15"
   }
 }
