@@ -20,13 +20,23 @@ function signUp(req, res) {
     usuario.save((err) => {
         if (err) return res.status(500).send({ message: `Error al crear el usuario: ${err}` });
         console.log("Llamando servicio de creacion de token...");
-        return res.status(200).send({ token: service.createToken(usuario) });
+        return res.status(200).send({
+            nombre: req.body.nombre,
+            apellido: req.body.apellido,
+            email: req.body.email,
+            telefono: req.body.telefono,
+            nombreUsuario: req.body.nombreUsuario,
+            cuit: req.body.cuit,
+            tipo: req.body.tipo,
+            token: service.createToken(usuario)
+        });
     });
 }
 
 function signIn(req, res) {
     console.log("SignIn usuario...");
     Usuario.findOne({ email: req.body.email }, (err, usuario) => {
+        console.log("Usuario: \n" + usuario);
         if (err) return res.status(500).send({ message: `Error al ingresar: ${err}` });
         if (!usuario) return res.status(404).send({ message: `Error el usuario no existe: ${req.body.email}` });
         console.log("Verificando password para usuario: " + req.body.email);
@@ -36,11 +46,17 @@ function signIn(req, res) {
             console.log("Verificacion de password OK");
             req.usuario = usuario;
             return res.status(200).send({
-                message: 'Te has logueado correctamente', 
+                nombre: usuario.nombre,
+                apellido: usuario.apellido,
+                email: usuario.email,
+                telefono: usuario.telefono,
+                nombreUsuario: usuario.nombreUsuario,
+                cuit: usuario.cuit,
+                tipo: usuario.tipo,
                 token: service.createToken(usuario)
             });
         });
-    }).select('_id email +password');
+    }).select('_id nombre apellido email telefono nombreUsuario cuit tipo +password');
 }
 
 module.exports = {
