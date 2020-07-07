@@ -11,6 +11,7 @@ const api = express.Router();
 
 const auth = require('../middlewares/auth');
 const validarSignUp = require('../middlewares/signUpValidator');
+const validarUpdate = require('../middlewares/userUpdateValidator');
 const validarPostMensaje = require('../middlewares/mensajePostValidator');
 const validarPutMensaje = require('../middlewares/mensajePutValidator');
 const validarPostExpensa = require('../middlewares/expensaPostValidator');
@@ -20,8 +21,10 @@ const validarPutDepartamento = require('../middlewares/departamentoPutValidator'
 const accessControl = require('../middlewares/reactAppAuth');
 
 // usuarios
-api.post('/signup', accessControl, validarSignUp, usuarioController.signUp);
-api.post('/login', accessControl, usuarioController.signIn);
+api.post('/users/signup', accessControl, validarSignUp, usuarioController.signUp);
+api.post('/users/login', accessControl, usuarioController.signIn);
+api.put('/users/:userId', accessControl, auth, validarUpdate, usuarioController.updateUsuario);
+api.delete('/users/:userId', accessControl, auth, usuarioController.deleteUsuario);
 // mensajes
 api.get('/mensajes', accessControl, auth, mensajeController.getMensajes);
 api.get('/mensaje/:mensajeId', accessControl, auth, mensajeController.getMensaje);
