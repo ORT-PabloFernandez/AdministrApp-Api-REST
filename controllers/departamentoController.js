@@ -26,6 +26,7 @@ function getDepartamentos(req, res) {
 function saveDepartamento(req, res) {
     let departamento = new Departamento();
     // los req.body.param son los parametros que se mandan en el body
+    departamento.titulo = req.body.titulo;
     departamento.descripcion = req.body.descripcion;
     departamento.usuarios = req.body.usuarios;
     console.log("saveDepartamento: " + departamento);

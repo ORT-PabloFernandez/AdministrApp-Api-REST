@@ -5,6 +5,7 @@ const { Decimal128 } = require('mongodb');
 const Schema = mongoose.Schema;
 
 const ExpensaSchema = Schema({
+    titulo: String,
     monto: Decimal128,
     descripcion: String,
     usuarios: []

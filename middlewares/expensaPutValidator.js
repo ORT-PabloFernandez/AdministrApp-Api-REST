@@ -1,12 +1,24 @@
 'use strict';
 
 function validarPutExpensa(req, res, next) {
+    let titulo = req.body.titulo;
     let monto = req.body.monto;
     let descripcion = req.body.descripcion;
     let usuarios = req.body.usuarios;
     let descripcionMinLength = 5;
+    let tituloMinLength = 5;
     let zero = 0;
     let error;
+
+    if (titulo) {
+        if (titulo.length < tituloMinLength) {
+            error = `Error: el titulo del extracto no puede tener menos de ${tituloMinLength} caracteres`;
+            console.log(error);
+            return res.status(500).send({ 
+                message: error 
+            });
+        }
+    }
 
     // revisa que haya recibido un objeto en el request
     if (monto) {
