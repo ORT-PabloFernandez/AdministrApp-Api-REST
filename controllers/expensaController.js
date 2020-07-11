@@ -26,6 +26,7 @@ function getExpensas(req, res) {
 function saveExpensa(req, res) {
     let expensa = new Expensa();
     // los req.body.param son los parametros que se mandan en el body
+    expensa.titulo = req.body.titulo;
     expensa.monto = req.body.monto;
     expensa.descripcion = req.body.descripcion;
     expensa.usuarios = req.body.usuarios;
