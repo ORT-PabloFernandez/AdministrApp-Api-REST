@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MensajeSchema = Schema({
+    titulo: String,
     descripcion: String,
     usuarios: [],
     urgente: Boolean,

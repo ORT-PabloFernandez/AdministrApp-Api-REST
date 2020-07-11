@@ -27,6 +27,7 @@ function getMensajes(req, res) {
 function saveMensaje(req, res) {
     let mensaje = new Mensaje();
     // los req.body.param son los parametros que se mandan en el body
+    mensaje.titulo = req.body.titulo;
     mensaje.descripcion = req.body.descripcion;
     mensaje.usuarios = req.body.usuarios;
     mensaje.tipo = req.body.tipo;
